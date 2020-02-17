@@ -11,15 +11,10 @@
 
 let width = 1200,height = 400,starNum = 999,stars = [];
 let canvas,stage;
-let msg = ("群星的光辉\n" +
-    "少女的闪耀\n" +
-    "Lain\n" +
-    "这片宇宙中\n" +
-    "最璀璨的\n" +
-    "那片星河\n" +
-    "跨越数亿光年\n" +
-    "鼓动的心跳\n" +
-    "终于...").split("\n");
+let msg = (
+    "Demo Text\n" +
+    "大河向东流\n" +
+    "天上的星星参北斗\n").split("\n");
 let printMsg =
     "星光\n" +
     "跨越过被茜色晚霞灼热的天空\n" +
