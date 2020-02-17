@@ -2,6 +2,8 @@
  * BGM DELA/雨狸《驭风少年》
  * 本页面中有部分文字灵感来源于同作者相关歌词
  * 背景图P站Id：79337387
+ * 以上资源（以及字体）均来自网络，作者不拥有所有权
+ * 基于MIT协议开源，转载、使用，修改请保留此license
  * @licence MIT License
  * @author LainNetWork 2020-02-14
  * @description https://github.com/LainNetWork/stardust
@@ -45,6 +47,28 @@ let btn;
 let bgm;
 
 /**
+ * 播放最后的标题
+ */
+function printLastTitle(){
+    let text = new createjs.Text("Lain，愿你星光永存。爱你","75px fz1","#fff");//Made By Rein 2020/02/14
+    let text2 = new createjs.Text("Made By Rein  2020年2月14日","30px fz1","#fff");//
+    text.shadow = new createjs.Shadow("#eee",0,0,5);
+    text2.shadow = new createjs.Shadow("#eee",0,0,5);
+    text.x = 200;
+    text.y = 600;
+    text2.x = 400;
+    text2.y = 750;
+    text.alpha = 0;
+    text2.alpha = 0;
+    createjs.Tween.get(text).wait(1000).to({alpha:1},1000);
+    createjs.Tween.get(text2).wait(3000).to({alpha:1},1000);
+    stage.addChild(text);
+    stage.addChild(text2);
+}
+
+
+
+/**
  * 爱心落下动画
  */
 function printLove() {
@@ -62,23 +86,7 @@ function printLove() {
         timeline.addTween(tween);
     }
 }
-//播放最后的标题
-function printLastTitle(){
-    let text = new createjs.Text("Lain，愿你星光永存。爱你","75px fz1","#fff");//Made By Rein 2020/02/14
-    let text2 = new createjs.Text("Made By Rein  2020年2月14日","30px fz1","#fff");//
-    text.shadow = new createjs.Shadow("#eee",0,0,5);
-    text2.shadow = new createjs.Shadow("#eee",0,0,5);
-    text.x = 200;
-    text.y = 600;
-    text2.x = 400;
-    text2.y = 750;
-    text.alpha = 0;
-    text2.alpha = 0;
-    createjs.Tween.get(text).wait(1000).to({alpha:1},1000);
-    createjs.Tween.get(text2).wait(3000).to({alpha:1},1000);
-    stage.addChild(text);
-    stage.addChild(text2);
-}
+
 
 /**
  * 月亮上方轮播文本
