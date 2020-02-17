@@ -1,8 +1,8 @@
 /**
  * BGM DELA/雨狸《驭风少年》
- * 本页面中有部分文字灵感来源于同作者相关歌词
  * 背景图P站Id：79337387
  * 以上资源（以及字体）均来自网络，作者不拥有所有权
+ * My first H5 page for my girlfriend
  * 基于MIT协议开源，转载、使用，修改请保留此license
  * @licence MIT License
  * @author LainNetWork 2020-02-14
@@ -11,33 +11,18 @@
 
 let width = 1200,height = 400,starNum = 999,stars = [];
 let canvas,stage;
-let msg = (
+let msg = (//replace your message here,will display on stars
     "Demo Text\n" +
     "大河向东流\n" +
     "天上的星星参北斗\n").split("\n");
-let printMsg =
-    "星光\n" +
-    "跨越过被茜色晚霞灼热的天空\n" +
-    "在无尽的夜幕上投下明媚永昼\n" +
-    "细细星砂汇聚成明亮的满月\n" +
-    "心中的潮水也被她吸引，化作漫天雨霖\n" +
-    "月光融入划过天际温柔的细雨\n" +
-    "在乐谱上敲下美妙诗音\n" +
-    "我抬头望向被星光铺满的天空\n" +
-    "星尘的碎屑中，看见了你的身影\n" +
-    "点滴回忆汇聚成长久交织的梦\n" +
-    "与现实交融，逐渐清晰\n" +
-    "我终于伸手，指向辽阔苍穹\n" +
-    "星光流转指尖，感受着你的温度\n" +
-    "挣脱重力束缚的自由灵魂\n" +
-    "飞翔，\n" +
-    "——向着那炽热的星海\n" +
-    "飞翔，\n" +
-    "——旋律不再记录忧伤\n" +
-    "飞翔，\n" +
-    "——沐浴在这温柔的光\n" +
-    "飞翔\n" +
-    "向着你飞翔";
+let printMsg = //replace your message here,the words will flying on the moon
+    ("LaLaLa\n" +
+    "LaLaLa\n" +
+    "LaLaLa\n" +
+    "LaLaLa\n" +
+    "LaLaLa\n" +
+    "LaLaLa\n").split(("\n"))
+;
 let btn;
 let bgm;
 
@@ -45,7 +30,7 @@ let bgm;
  * 播放最后的标题
  */
 function printLastTitle(){
-    let text = new createjs.Text("Lain，愿你星光永存。爱你","75px fz1","#fff");//Made By Rein 2020/02/14
+    let text = new createjs.Text("Name，TitleTitleTitle。爱你","75px fz1","#fff");//Made By Rein 2020/02/14
     let text2 = new createjs.Text("Made By Rein  2020年2月14日","30px fz1","#fff");//
     text.shadow = new createjs.Shadow("#eee",0,0,5);
     text2.shadow = new createjs.Shadow("#eee",0,0,5);
@@ -87,7 +72,6 @@ function printLove() {
  * 月亮上方轮播文本
  */
 function writeText(){
-    let pm = printMsg.split("\n");
     let count = 1;//同时渲染的文本条数
     let tweens = [];
     let timeline = new createjs.Timeline({"onComplete": printLove});
@@ -101,7 +85,7 @@ function writeText(){
 
         tweens.push({text:text,tween:tween});
     }
-    for(let i in pm){//要打印的文字
+    for(let i in printMsg){//要打印的文字
         //均分到各个tween上
         buildPrintMsgTween(tweens[i%count],pm[i],i);
     }
@@ -197,8 +181,7 @@ function getRandomPos(){
 function getRandomPosByWH(w0,w1,h0,h1) {
     let x = Math.random()*(w1-w0)+w0;
     let y = Math.random()*(h1-h0)+h0;
-    let rePos = {x: Math.floor(x),y: Math.floor(y)};
-    return rePos;
+    return {x: Math.floor(x),y: Math.floor(y)};
 }
 //打印消息
 function drawMsg(){
