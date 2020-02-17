@@ -46,153 +46,153 @@ let bgm;
  */
 function printLove() {
     let timeline = new createjs.Timeline({"onComplete":printLastTitle});
-    let pos = getPoints("💕",0,300)
+    let pos = getPoints("💕",0,300);
     for(let i in stars){
-        let tween = createjs.Tween.get(stars[i])
+        let tween = createjs.Tween.get(stars[i]);
         if(i<pos.length){
-            let position = pos[i]
-            position.alpha = 1
-            tween.to(position,2000,createjs.Ease.backInOut)
+            let position = pos[i];
+            position.alpha = 1;
+            tween.to(position,2000,createjs.Ease.backInOut);
         }else{
-            tween.to(getRandomPos(),2000,createjs.Ease.backInOut)
+            tween.to(getRandomPos(),2000,createjs.Ease.backInOut);
         }
-        timeline.addTween(tween)
+        timeline.addTween(tween);
     }
 }
 //播放最后的标题
 function printLastTitle(){
     let text = new createjs.Text("Lain，愿你星光永存。爱你","75px fz1","#fff");//Made By Rein 2020/02/14
     let text2 = new createjs.Text("Made By Rein  2020年2月14日","30px fz1","#fff");//
-    text.shadow = new createjs.Shadow("#eee",0,0,5)
-    text2.shadow = new createjs.Shadow("#eee",0,0,5)
-    text.x = 200
-    text.y = 600
-    text2.x = 400
-    text2.y = 750
-    text.alpha = 0
-    text2.alpha = 0
+    text.shadow = new createjs.Shadow("#eee",0,0,5);
+    text2.shadow = new createjs.Shadow("#eee",0,0,5);
+    text.x = 200;
+    text.y = 600;
+    text2.x = 400;
+    text2.y = 750;
+    text.alpha = 0;
+    text2.alpha = 0;
     createjs.Tween.get(text).wait(1000).to({alpha:1},1000);
     createjs.Tween.get(text2).wait(3000).to({alpha:1},1000);
-    stage.addChild(text)
-    stage.addChild(text2)
+    stage.addChild(text);
+    stage.addChild(text2);
 }
 
 /**
  * 月亮上方轮播文本
  */
 function writeText(){
-    let pm = printMsg.split("\n")
-    let count = 1//同时渲染的文本条数
-    let tweens = []
-    let timeline = new createjs.Timeline({"onComplete": printLove})
+    let pm = printMsg.split("\n");
+    let count = 1;//同时渲染的文本条数
+    let tweens = [];
+    let timeline = new createjs.Timeline({"onComplete": printLove});
     for(let i = 0;i<count;i++){
         let text = new createjs.Text("","35px fz1","#fff");
-        text.shadow = new createjs.Shadow("#eee",0,0,5)
-        text.x = 0
-        text.y = 0
-        stage.addChild(text)
-        let tween = createjs.Tween.get(text).wait(1000)
+        text.shadow = new createjs.Shadow("#eee",0,0,5);
+        text.x = 0;
+        text.y = 0;
+        stage.addChild(text);
+        let tween = createjs.Tween.get(text).wait(1000);
 
-        tweens.push({text:text,tween:tween})
+        tweens.push({text:text,tween:tween});
     }
     for(let i in pm){//要打印的文字
         //均分到各个tween上
-        buildPrintMsgTween(tweens[i%count],pm[i],i)
+        buildPrintMsgTween(tweens[i%count],pm[i],i);
     }
     tweens.forEach(t=>{
-        timeline.addTween(t.tween)
+        timeline.addTween(t.tween);
     })
 
 }
 
 function buildPrintMsgTween(tween,msg,i){
-    tween.tween.wait(i*100)//同时渲染多条文本时，确保文本出现顺序
+    tween.tween.wait(i*100);//同时渲染多条文本时，确保文本出现顺序
     let prePos = getRandomPosByWH(0,width-500,height,height+400);
-    tween.text.x = prePos.x
-    tween.text.y = prePos.y
+    tween.text.x = prePos.x;
+    tween.text.y = prePos.y;
     let nowStr = "";
     for(let i = 0;i<msg.length;i++){
-        nowStr += msg.charAt(i)
-        tween.tween.wait(Math.random()*100+100).to({text:nowStr})
+        nowStr += msg.charAt(i);
+        tween.tween.wait(Math.random()*100+100).to({text:nowStr});
     }
     let pos = getRandomPosByWH(0,width-500,height,height+300);
-    pos.text = ""
-    tween.tween.wait(1000+i*100).to({alpha:0},500).to(pos).to({alpha:1})
+    pos.text = "";
+    tween.tween.wait(1000+i*100).to({alpha:0},500).to(pos).to({alpha:1});
 }
 
 function handleComplete() {
     for(let i2 in msg){
-        let pos = getPoints(msg[i2],0,0)
-        mass.push(pos)
+        let pos = getPoints(msg[i2],0,0);
+        mass.push(pos);
     }
-    document.getElementById("stageBox").style.display = "block"
-    document.getElementById("preloadProgress").remove()
-    canvas = document.getElementById("stage")
+    document.getElementById("stageBox").style.display = "block";
+    document.getElementById("preloadProgress").remove();
+    canvas = document.getElementById("stage");
     stage = new createjs.Stage(canvas);//获取舞台
     //构建背景
-    let image = resources.getResult("background")
-    let background = new createjs.Bitmap(image)
-    background.height = 200
-    stage.addChild(background)
+    let image = resources.getResult("background");
+    let background = new createjs.Bitmap(image);
+    background.height = 200;
+    stage.addChild(background);
     //构建按钮
-    btn  = new createjs.Shape()
-    btn.graphics.beginFill("#eedc1b").drawCircle(0,0,60)
+    btn  = new createjs.Shape();
+    btn.graphics.beginFill("#eedc1b").drawCircle(0,0,60);
     btn.x = 600;
     btn.y = 400;
-    btn.shadow = new createjs.Shadow("#eedc1b",0,0,30)
-    createjs.Tween.get(btn.shadow,{loop:true}).to({blur:60},2000).to({blur: 30},2000)
-    stage.addChild(btn)
+    btn.shadow = new createjs.Shadow("#eedc1b",0,0,30);
+    createjs.Tween.get(btn.shadow,{loop:true}).to({blur:60},2000).to({blur: 30},2000);
+    stage.addChild(btn);
     //监听鼠标
     btn.addEventListener("click",function () {
         if(bgm == null){
             bgm = createjs.Sound.play("sound",{loop:true});
             createjs.Tween.get(btn,{loop:true}).to({scaleX:1.15,scaleY:1.15,override:false},1000,createjs.Ease.elasticIn)
-                .to({scaleX:1,scaleY:1,override:false},1000,createjs.Ease.elasticIn)
-            drawMsg()
+                .to({scaleX:1,scaleY:1,override:false},1000,createjs.Ease.elasticIn);
+            drawMsg();
         }else{
             if(bgm.paused == true){
-                bgm.paused = false
-                createjs.Ticker.paused = false
+                bgm.paused = false;
+                createjs.Ticker.paused = false;
                 // drawMsg()
             }else{
-                bgm.paused = true
-                createjs.Ticker.paused = true
+                bgm.paused = true;
+                createjs.Ticker.paused = true;
             }
         }
-    })
+    });
     for(let i = 0;i<starNum;i++){
         let star  = new createjs.Shape();
         star.compositeOperation = "lighter";
-        star.graphics.beginFill("#eee").drawCircle(0,0,2)
+        star.graphics.beginFill("#eee").drawCircle(0,0,2);
 
         star.x = Math.floor(Math.random()*width);
         star.y = Math.floor(Math.random()*height);
 
-        star.shadow = new createjs.Shadow("#eee",0,0,4)
+        star.shadow = new createjs.Shadow("#eee",0,0,4);
         let num = Math.floor(Math.random()*999);
         if(num>0&&num<=99){//随机一部分星星加入闪烁特效
             createjs.Tween.get(star,{loop:true,override:false})
                 .to({scaleX:1.5,scaleY:1.5,alpha:0.3},1000+Math.floor(Math.random()*500))
                 .to({scaleX:1,scaleY:1,alpha:1},1000+Math.floor(Math.random()*500))
         }
-        stage.addChild(star)
+        stage.addChild(star);
         stars.push(star)
     }
-    createjs.Ticker.setFPS(60)//设置舞台帧数
-    createjs.Ticker.addEventListener("tick",stage)
+    createjs.Ticker.setFPS(60);//设置舞台帧数
+    createjs.Ticker.addEventListener("tick",stage);
 }
 //获取随机坐标
 function getRandomPos(){
-    let pos =  getRandomPosByWH(0,width,0,height)
-    pos.alpha = Math.random()
+    let pos =  getRandomPosByWH(0,width,0,height);
+    pos.alpha = Math.random();
     return pos
 }
 
 function getRandomPosByWH(w0,w1,h0,h1) {
-    let x = Math.random()*(w1-w0)+w0
-    let y = Math.random()*(h1-h0)+h0
-    let rePos = {x: Math.floor(x),y: Math.floor(y)}
-    return rePos
+    let x = Math.random()*(w1-w0)+w0;
+    let y = Math.random()*(h1-h0)+h0;
+    let rePos = {x: Math.floor(x),y: Math.floor(y)};
+    return rePos;
 }
 //打印消息
 function drawMsg(){
@@ -202,20 +202,20 @@ function drawMsg(){
             createjs.Tween.get(btn,{loop:false,override:true}).to({y:1600,scaleX:12,scaleY:13},1500,createjs.Ease.backInOut)
             //星星打乱成星云
             for(let i in stars){
-                createjs.Tween.get(stars[i],{loop:false}).to(getRandomPos(),3000,createjs.Ease.backInOut)
+                createjs.Tween.get(stars[i],{loop:false}).to(getRandomPos(),3000,createjs.Ease.backInOut);
             }
-            window.scrollTo(0,350)//感谢来自口袋君的建议
+            window.scrollTo(0,350);//感谢来自口袋君的建议
             writeText()//播放文字
-        }})
+        }});
     for(let i in stars){
         let tween = createjs.Tween.get(stars[i],{loop:false,override:false});
         for(let i3 in mass){
-            let pos = mass[i3]
+            let pos = mass[i3];
             if(i<pos.length){
-                pos.alpha = 1
-                tween.to(pos[i],3000,createjs.Ease.circInOut).wait(1000)
+                pos.alpha = 1;
+                tween.to(pos[i],3000,createjs.Ease.circInOut).wait(1000);
             }else{
-                tween.to(getRandomPos(),3000,createjs.Ease.circInOut).wait(1000)
+                tween.to(getRandomPos(),3000,createjs.Ease.circInOut).wait(1000);
             }
         }
         tween.wait(3000)
@@ -225,9 +225,9 @@ function drawMsg(){
 //打乱星星顺序
 function random(poss){
     for(let i = 0;i<poss.length;i++){
-        let pos = Math.floor((Math.random()*(poss.length - i))) + i
-        let temp = poss[pos]
-        poss[pos] = poss[i]
+        let pos = Math.floor((Math.random()*(poss.length - i))) + i;
+        let temp = poss[pos];
+        poss[pos] = poss[i];
         poss[i] = temp
     }
     return poss;
@@ -277,5 +277,5 @@ function getPoints(msg,xp,yp) {
             i += gap * 4 * width;
         }
     }
-    return random(pos)
+    return random(pos);
 };
