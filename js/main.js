@@ -14,14 +14,14 @@ let canvas,stage;
 let msg = (//replace your message here,will display on stars
     "Demo Text\n" +
     "大河向东流\n" +
-    "天上的星星参北斗\n").split("\n");
+    "天上的星星参北斗").split("\n");
 let printMsg = //replace your message here,the words will flying on the moon
     ("LaLaLa\n" +
     "LaLaLa\n" +
     "LaLaLa\n" +
     "LaLaLa\n" +
     "LaLaLa\n" +
-    "LaLaLa\n").split(("\n"))
+    "LaLaLa").split(("\n"))
 ;
 let btn;
 let bgm;
@@ -87,7 +87,7 @@ function writeText(){
     }
     for(let i in printMsg){//要打印的文字
         //均分到各个tween上
-        buildPrintMsgTween(tweens[i%count],pm[i],i);
+        buildPrintMsgTween(tweens[i%count],printMsg[i],i);
     }
     tweens.forEach(t=>{
         timeline.addTween(t.tween);
