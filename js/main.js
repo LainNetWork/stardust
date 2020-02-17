@@ -2,6 +2,9 @@
  * BGM DELA/雨狸《驭风少年》
  * 本页面中有部分文字灵感来源于同作者相关歌词
  * 背景图P站Id：79337387
+ * @licence MIT License
+ * @author LainNetWork 2020-02-14
+ * @description https://github.com/LainNetWork/stardust
  */
 
 let width = 1200,height = 400,starNum = 999,stars = [];
