@@ -8,5 +8,5 @@ A Valentine's Day Present
 
 Touch the moon,stars will move
 
-My first h5 animation page
+My first h5 animation page for my girlfriend.Based on createJS
 
