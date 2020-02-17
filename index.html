@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Stardust</title>
+    <script src="createjs.min.js"></script>
+    <link rel="icon" href="./icon.jpg">
+</head>
+<style>
+    canvas{
+        width: 100%;
+        border-radius: 4px;
+    }
+    html,body{
+        width: 100%;
+        height: 1000px;
+    }
+    #backgroundBox{
+        padding: 10px;
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+    #backgroundBox::before{
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: transparent url('http://cdn.lain.fun/sky2.jpg') repeat-y;
+        background-size: cover;
+        filter: blur(4px);
+        z-index: -1;
+    }
+    #progressBox{
+        border-radius: 6px;
+        display: inline-block;
+        background-color: #66ccff;
+        width: 600px;
+        height: 30px;
+        border: 2px solid #5385ff;
+    }
+    #progress{
+        background-color: #5385ff;
+        text-align: center;
+        margin: 3px;
+        height: 20px;
+        border: 2px solid #5385ff;
+    }
+</style>
+<body>
+<div id="backgroundBox">
+    <div id="preloadProgress" style="text-align: center;padding-top: 200px ">
+        <div id="progressBox">
+            <div id="progress">
+            </div>
+        </div>
+        <p style="color: white">加载中~</p>
+    </div>
+    <div id="stageBox" style="text-align: center;display: none;width: 100%">
+        <canvas id="stage" width="1200" height="1000"></canvas>
+    </div>
+</div>
+<script src="main.js"></script>
+<script>
+let resources;
+const mass = [];
+
+/**
+ * 预加载资源
+ */
+function init() {
+    resources = new createjs.LoadQueue();
+    resources.installPlugin(createjs.Sound);
+    resources.on("complete", handleComplete, this);
+    resources.on("progress",(p)=>{
+        let count = document.getElementById("progress")
+        count.style.width = (600-10)*p.loaded + "px"
+    })
+    resources.loadFile({id:"sound", src:"bgm.mp3"});
+    resources.loadManifest([
+        {id: "background", src:"sky.jpg"},
+        {id: "f",src: "fz1.ttf",type:"font"}
+    ]);
+}
+init()
+</script>
+
+</body>
+</html>
