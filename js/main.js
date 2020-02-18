@@ -1,21 +1,23 @@
 /**
- * BGM DELA/雨狸《驭风少年》
- * 背景图P站Id：79337387
- * 以上资源（以及字体）均来自网络，作者不拥有所有权
  * My first H5 page for my girlfriend
- * 基于MIT协议开源，转载、使用，修改请保留此license
+ * BGM: DELA/雨狸《驭风少年》
+ * 背景图P站Id：79337387
+ * background image's Pixiv Id: 79337387
+ * 以上资源（以及字体）均来自网络，作者不拥有所有权
+ * The above music,font,image resources are from the Internet, and the author does not own the ownership
+ * 基于MIT协议开源，转载、使用，修改请保留此许可
+ *
  * @licence MIT License
  * @author LainNetWork 2020-02-14
  * @description https://github.com/LainNetWork/stardust
  */
 
-let width = 1200,height = 400,starNum = 999,stars = [];
-let canvas,stage;
-let msg = (//replace your message here,will display on stars
-    "Demo Text\n" +
+
+let msg =  //replace your message here,and split with '\n',the words will display on stars
+    ("Demo Text\n" +
     "大河向东流\n" +
     "天上的星星参北斗").split("\n");
-let printMsg = //replace your message here,the words will flying on the moon
+let printMsg = //replace your message here,and split with '\n',the words will flying on the moon
     ("LaLaLa\n" +
     "LaLaLa\n" +
     "LaLaLa\n" +
@@ -23,6 +25,9 @@ let printMsg = //replace your message here,the words will flying on the moon
     "LaLaLa\n" +
     "LaLaLa").split(("\n"))
 ;
+
+let width = 1200,height = 400,starNum = 999,stars = [];
+let canvas,stage;
 let btn;
 let bgm;
 
@@ -30,8 +35,8 @@ let bgm;
  * 播放最后的标题
  */
 function printLastTitle(){
-    let text = new createjs.Text("Name，TitleTitleTitle。爱你","75px fz1","#fff");//Made By Rein 2020/02/14
-    let text2 = new createjs.Text("Made By Rein  2020年2月14日","30px fz1","#fff");//
+    let text = new createjs.Text("Name，TitleTitleTitle。爱你","75px fz1","#fff");//this words will display last
+    let text2 = new createjs.Text("Made By Rein  2020年2月14日","30px fz1","#fff");
     text.shadow = new createjs.Shadow("#eee",0,0,5);
     text2.shadow = new createjs.Shadow("#eee",0,0,5);
     text.x = 200;
